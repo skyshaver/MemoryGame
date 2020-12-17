@@ -12,15 +12,14 @@ import SwiftUI
 struct EmojiMemoryGameView: View {
     // @ObservedObject ties to the @Published property on the view model
     @ObservedObject var viewModel: EmojiMemoryGame
+    
     var body: some View {
-        HStack {
-            // ForEach is a container view
-            ForEach(viewModel.cards) { card in
+        Grid(items: viewModel.cards) { card in
                 CardView(card: card).onTapGesture {
                     viewModel.chooseCard(card: card)
                 }
+                .padding(5)
                 //.aspectRatio(2/3, contentMode: .fit)
-            }
         }
         .padding()
         .foregroundColor(Color.orange)
